@@ -6,6 +6,7 @@ import {
   CardActions,
   Button,
   CardHeader,
+  Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { login } from "../store/actions/authActions";
@@ -18,14 +19,11 @@ import "../styles/login.scss";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-
 import { TextField } from "formik-material-ui";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(1),
-    // height: "100%",
-    // backgroundColor:'green'
   },
   center: {
     textAlign: "center",
@@ -82,96 +80,92 @@ function Login(props) {
     <Grid
       container
       justifyContent="center"
-      alignItems="center"
-      className={classes.root}
-      spacing={1}
+      alignItems="stretch"
+      direction="row"
+      style={{ flexGrow: 1, marginTop: "6rem" }}
     >
-      <div className="wrapper">
-        <div className="left">
-          <div id="img-pane">
-            <img className={classes.img} src={photo} alt="Login" />
-          </div>
-        </div>
-        <div className="right">
-          <div className="login">
-            <Grid container spacing={1}>
-              <Grid item>
-                <Alert severity="info">
-                  Use email : <strong>demo@gmail.com</strong> / password :
-                  <strong>&nbsp;demo1234</strong>
-                </Alert>
-              </Grid>
-              <Grid item>
-                <Card className={classes.padding} variant="outlined">
-                  <CardHeader
-                    title="Welcome back! 👩‍💻"
-                    className={classes.center}
-                  ></CardHeader>
+      <Grid item>
+        <img className={classes.img} src={photo} alt="Login" />
+      </Grid>
+      <Grid spacing={1} item>
+        <Grid item>
+          <Box mb={1}>
+            <Alert severity="info">
+              Use email : <strong>demo@gmail.com</strong> / password :
+              <strong>&nbsp;demo1234</strong>
+            </Alert>
+          </Box>
+        </Grid>
+        <Grid item>
+          <Card className={classes.padding} variant="outlined">
+            <CardHeader
+              title="Welcome back! 👩‍💻"
+              className={classes.center}
+            ></CardHeader>
 
-                  <Formik
-                    initialValues={initialValues}
-                    onSubmit={submit}
-                    validationSchema={SignUpSchema}
-                  >
-                    {({ dirty, isValid }) => {
-                      return (
-                        <Form>
-                          <CardContent>
-                            <Field
-                              name="email"
-                              label="Email"
-                              component={TextField}
-                              variant="outlined"
-                              fullWidth
-                              margin="dense"
-                            ></Field>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={submit}
+              validationSchema={SignUpSchema}
+            >
+              {({ dirty, isValid }) => {
+                return (
+                  <Form>
+                    <CardContent>
+                      <Field
+                        name="email"
+                        label="Email"
+                        component={TextField}
+                        variant="outlined"
+                        fullWidth
+                        margin="dense"
+                      ></Field>
 
-                            <Field
-                              name="password"
-                              label="Password"
-                              component={TextField}
-                              variant="outlined"
-                              fullWidth
-                              margin="dense"
-                              type="password"
-                            ></Field>
-                          </CardContent>
-                          <CardActions>
-                            <Button
-                              variant="contained"
-                              color="primary"
-                              fullWidth
-                              disabled={!dirty || !isValid}
-                              type="submit"
-                            >
-                              login
-                            </Button>
-                          </CardActions>
-                        </Form>
-                      );
-                    }}
-                  </Formik>
-                </Card>
-              </Grid>
-              {alert.showAlert && (
-                <Grid item>
-                  <Alert
-                    severity={alert.severity}
-                    onClose={() =>
-                      setAlert({
-                        ...alert,
-                        showAlert: false,
-                      })
-                    }
-                  >
-                    {alert.message}
-                  </Alert>
-                </Grid>
-              )}
-            </Grid>
-          </div>
-        </div>
-      </div>
+                      <Field
+                        name="password"
+                        label="Password"
+                        component={TextField}
+                        variant="outlined"
+                        fullWidth
+                        margin="dense"
+                        type="password"
+                      ></Field>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        disabled={!dirty || !isValid}
+                        type="submit"
+                      >
+                        login
+                      </Button>
+                    </CardActions>
+                  </Form>
+                );
+              }}
+            </Formik>
+          </Card>
+        </Grid>
+        {alert.showAlert && (
+          <Grid item>
+            <Box mt={1}>
+              <Alert
+                severity={alert.severity}
+                onClose={() =>
+                  setAlert({
+                    ...alert,
+                    showAlert: false,
+                  })
+                }
+              >
+                {alert.message}
+              </Alert>
+            </Box>
+          </Grid>
+        )}
+      </Grid>
     </Grid>
   );
 }
