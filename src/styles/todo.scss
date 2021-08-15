@@ -1,0 +1,66 @@
+.todo-list__title {
+  font-family: "Roboto", "sans-serif";
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.todo-list__table {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-color: #f5f5f5;
+}
+
+.todo-list__add-button {
+  background-color: #00bfff;
+  color: white;
+  text-transform: capitalize;
+}
+
+.todo-list__priority-label {
+  color: #a9a9a9;
+}
+
+.todo-list__task-name{
+    display: flex;
+    align-items:center;
+    span{
+        font-weight: bold;
+        margin-left: 0.5rem;
+    }
+}
+
+.todo-list__table-icon--active{
+    color:#a9a9a9
+}
+
+.todo-list__table-icon--inactive{
+    color:green
+}
+
+.cross{
+    text-decoration: line-through;
+}
+
+.table-cell {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.chip {
+  border-radius: 1rem;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+.low {
+  background-color: #66CDAA;
+}
+
+.medium {
+  background-color: #F4BB44;
+}
+
+.high {
+  background-color: #FA5F55;
+}
