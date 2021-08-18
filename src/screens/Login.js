@@ -151,17 +151,7 @@ function Login(props) {
         {alert.showAlert && (
           <Grid item>
             <Box mt={1}>
-              <Alert
-                severity={alert.severity}
-                onClose={() =>
-                  setAlert({
-                    ...alert,
-                    showAlert: false,
-                  })
-                }
-              >
-                {alert.message}
-              </Alert>
+              
             </Box>
           </Grid>
         )}
