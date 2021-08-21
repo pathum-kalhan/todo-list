@@ -1,5 +1,5 @@
 import {Dispatch} from "redux"
-import Action from "./index";
+import {Action} from "./index";
 import ActionType from "../types";
 import { routes } from "../../routes";
 import fakeLogin from "../../apis/login";

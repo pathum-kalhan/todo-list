@@ -16,11 +16,10 @@ const initialState = {
 function reducer(state = initialState, action: Action) {
   switch (action.type) {
     case ActionType.ADD_ITEM:
-      return { ...state, items: [action.payload, ...state.items] };
+      return { items: [action.payload, ...state.items] };
 
     case ActionType.CROSS_ITEM:
       return {
-        ...state,
         items: state.items.map((e: Item) => {
           if (e.id === action.payload) e.isActive = false;
           return e;

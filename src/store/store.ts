@@ -14,6 +14,6 @@ const store = createStore(
   )
 );
 
-export type State = ReturnType<typeof store.getState>;
+export type State = ReturnType<typeof rootReducer>;
 
 export default store;
