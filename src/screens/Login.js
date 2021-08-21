@@ -9,7 +9,7 @@ import {
   Box,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { login } from "../store/actions/authActions";
+import { login } from "../store/actions/authActions.ts";
 import { connect } from "react-redux";
 import Alert from "@material-ui/lab/Alert";
 import photo from "../assets/login.png";
@@ -151,17 +151,7 @@ function Login(props) {
         {alert.showAlert && (
           <Grid item>
             <Box mt={1}>
-              <Alert
-                severity={alert.severity}
-                onClose={() =>
-                  setAlert({
-                    ...alert,
-                    showAlert: false,
-                  })
-                }
-              >
-                {alert.message}
-              </Alert>
+              
             </Box>
           </Grid>
         )}

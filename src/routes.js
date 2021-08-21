@@ -1,5 +1,5 @@
 import { lazy } from "react";
-const TodoList = lazy(() => import("./screens/TodoList.js"));
+const TodoList = lazy(() => import("./screens/TodoList"));
 
 export const routes = [
   {

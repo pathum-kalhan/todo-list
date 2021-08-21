@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { logout, toggleDrawer } from "../../store/actions/authActions";
+import { logout, toggleDrawer } from "../../store/actions/authActions.ts";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {

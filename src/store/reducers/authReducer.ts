@@ -1,20 +1,20 @@
-import { LOGIN, LOGOUT, TOGGLE } from "../types";
-
+import  ActionType  from "../types";
+import { Action } from "../actions";
 const initialState = {
   token: null,
   routes: [],
   isDrawerOpen: false,
 };
 
- function reducer (state = initialState, action) {
+function reducer(state = initialState, action: Action) {
   switch (action.type) {
-    case LOGIN:
+    case ActionType.LOGIN:
       return { ...state, ...action.payload };
 
-    case LOGOUT:
+    case ActionType.LOGOUT:
       return initialState;
 
-    case TOGGLE:
+    case ActionType.TOGGLE:
       return { ...state, isDrawerOpen: !state.isDrawerOpen };
 
     default:

@@ -14,13 +14,21 @@ import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { useSelector, useDispatch } from "react-redux";
 import AddDialog from "../components/Todo/AddTask";
 import { crossItem } from "../store/actions/todoActions";
+import {State} from "../store/store"
 import "../styles/todo.scss";
+interface Item {
+  task: string;
+  priority: string;
+  id: string;
+  isActive: boolean;
+  label: string;
+}
 export default function TodoList() {
-  const items = useSelector((state) => state.todo.items);
+  const items = useSelector((state:State) => state.todo.items);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const handleMark = (id) => {
+  const handleMark = (id:string) => {
     dispatch(crossItem(id));
   };
   return (
@@ -54,7 +62,7 @@ export default function TodoList() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {items.map((row) => (
+                {items.map((row:Item) => (
                   <TableRow key={row.id} onClick={() => handleMark(row.id)}>
                     <TableCell className="table-cell todo-list__task-name">
                       <CheckCircleOutlineIcon

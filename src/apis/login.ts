@@ -1,4 +1,7 @@
-const login = (email, password) => {
+type Email = string;
+type Password = string;
+
+const login = (email:Email, password:Password) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (email === "demo@gmail.com" && password === "demo1234") {
