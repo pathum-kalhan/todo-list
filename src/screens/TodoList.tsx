@@ -14,13 +14,14 @@ import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { useSelector, useDispatch } from "react-redux";
 import AddDialog from "../components/Todo/AddTask";
 import { crossItem } from "../store/actions/todoActions";
+import {State} from "../store/store"
 import "../styles/todo.scss";
 export default function TodoList() {
-  const items = useSelector((state) => state.todo.items);
+  const items = useSelector((state:State) => state.todo.items);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const handleMark = (id) => {
+  const handleMark = (id:string) => {
     dispatch(crossItem(id));
   };
   return (

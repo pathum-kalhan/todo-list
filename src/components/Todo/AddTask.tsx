@@ -17,7 +17,31 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../../store/actions/todoActions";
 import "../../styles/add-task.scss";
 
-export default function SimpleDialog(props) {
+interface Props {
+  onClose: () => void;
+  open: boolean;
+}
+
+type Task = string;
+
+enum Priority {
+  Low = "Low",
+  Medium = "Medium",
+  High = "High",
+}
+
+enum Label {
+  Low = "Low",
+  Med = "Med",
+  High = "High",
+}
+
+interface Item {
+  task: Task;
+  priority: Priority;
+}
+
+export default function SimpleDialog(props: Props) {
   const dispatch = useDispatch();
   const { onClose, open } = props;
 
@@ -33,14 +57,21 @@ export default function SimpleDialog(props) {
     priority: Yup.string().required(),
   });
 
-  const saveTask = ({ task, priority }) => {
-    const id = Date.now();
-    let label = priority;
+  const saveTask = ({ task, priority }: Item) => {
+    const id = Date.now().toString();
+    let label: Label;
     if (priority === "Medium") {
-      label = "Med";
+      label = Label.Med;
+    } else {
+      label = Label[Priority[priority] as keyof typeof Label];
     }
     dispatch(addItem({ task, priority, id, isActive: true, label }));
     handleClose();
+  };
+
+  const initialValues:Item = {
+    task: "",
+    priority: Priority.Medium,
   };
 
   return (
@@ -54,7 +85,7 @@ export default function SimpleDialog(props) {
         <h2 className="add-task__title">Add a task 📋</h2>
       </DialogTitle>
       <Formik
-        initialValues={{ task: "", priority: "Medium" }}
+        initialValues={initialValues}
         onSubmit={saveTask}
         validationSchema={validationSchema}
       >

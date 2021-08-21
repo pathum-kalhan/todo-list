@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import history from "../src/history";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   ThemeProvider,
@@ -9,8 +8,8 @@ import {
 import purple from "@material-ui/core/colors/purple";
 
 import Login from "./screens/Login";
-import NavBar from "../src/components/layouts/NavBar";
-import Drawer from "../src/components/layouts/Drawer";
+import NavBar from "./components/layouts/NavBar";
+import Drawer from "./components/layouts/Drawer";
 import NotFound from "./screens/PageNotFound";
 import PermissionDenied from "./screens/PermissionDenied";
 
@@ -20,11 +19,10 @@ import "../src/index.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
-
 // protected route
-import ProtectedRoute from "../src/components/common/ProtectedRoute";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
-import { routes } from "../src/routes";
+import { routes } from "./routes";
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -57,24 +55,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function App(props) {
+function App(props: any) {
   const classes = useStyles();
   return (
     <Provider store={store}>
       <ThemeProvider theme={lightTheme}>
-        <Router history={history}>
+        <Router>
           <div className={classes.root}>
             <NavBar {...props}> </NavBar>
             <ThemeProvider theme={darkTheme}>
               <Drawer />
             </ThemeProvider>
-            <Suspense
-              fallback={
-                <div>
-                  Please wait...
-                </div>
-              }
-            >
+            <Suspense fallback={<div>Please wait...</div>}>
               <Switch>
                 <Route path="/" exact component={Login}></Route>
                 <Route
@@ -86,7 +78,12 @@ function App(props) {
                 {routes
                   .flatMap((items) => items.children)
                   .map(({ component, path }) => (
-                    <ProtectedRoute component={component} exact path={path} key={path} />
+                    <ProtectedRoute
+                      component={component}
+                      exact
+                      path={path}
+                      key={path}
+                    />
                   ))}
 
                 <Route component={NotFound}></Route>
